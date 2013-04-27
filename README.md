@@ -17,11 +17,11 @@ Onecup makes several assumptions:
  + there is a need for explicit whitespace control
  + HTML is more of an object code then markup
 
-Onecup excels at generating complex HTML in a few lines. It is just coffee script which is just javascript. It requires no compolation (apart from coffeescript) and you can use all expressiveness and organization of coffee script anywhere in the templates.
+Onecup excels at generating complex HTML in a few lines. It is just coffee script which is just javascript. It requires no compilation (apart from coffee script) and you can use all expressiveness and organization of coffee script anywhere in the templates.
 
 ## Features ##
 
-### jquery style selectors ###
+### JQuery style selectors ###
 If first argument to a template tag begins with a `#` or `.` it is treated as a *id* or *class*. It uses the JQuery selectors syntax. Example:
 
 ```
@@ -32,7 +32,7 @@ div "#list-holder" ->
 ```
 
 ### explicit text and whitespace ###
-Text is explicit, yet you get explicit control over your whitespace. You also don't have to fight over whitespace minifiers, because verything produced is already minified.
+Text is explicit, yet you get explicit control over your whitespace. You also don't have to fight over whitespace minifiers, because everything produced is already minified.
 
 ```
 div ->
@@ -41,7 +41,7 @@ div ->
   text "foo"
 ```
 
-Using `text` or leaving it on the same line is equivilent
+Using `text` or leaving it on the same line is equivalent
 
 ```
 p "look its the same thing"
@@ -58,10 +58,10 @@ div ->
 ```
 
 ### styles ###
-Styles can be passed directly using the `style` attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or to not clutter the css with layout code that is not reusible.
+Styles can be passed directly using the `style` attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or to not clutter the css with layout code that is not reusable.
 
 ```
-div style{"z-index":5*4}, "z-index compution"
+div style{"z-index":5*4}, "z-index computation"
 div style:{'background-color': "red"}, ->
    text "this text will be red"
 ```
@@ -108,7 +108,7 @@ bbox ->
   text "so does this"
 ```
 
-### if blcoks ###
+### if blocks ###
 ```
 a = true
 if a 
@@ -142,8 +142,8 @@ $t.full_doc ->
   body ->
     p "content here"
 
-# anywere in your code
-html = drykup.render($t.full_doc(template, args))
+# anywhere in your code
+html = onecup.render($t.full_doc(template, args))
 # use JQuery (or some thing else) to insert it into html
 $("html").html(html)
 
@@ -151,4 +151,4 @@ $("html").html(html)
 
 ## Origin ##
 
-Onecup was originally fork of drykup (https://github.com/mark-hahn/drykup) by Mark Hahn, which was a fork of coffeekup (https://github.com/mauricemach/coffeekup) by Maurice Machado. But now its a whole different thing!
+Onecup was originally fork of dryKup (https://github.com/mark-hahn/drykup) by Mark Hahn, which was a fork of CoffeeKup (https://github.com/mauricemach/coffeekup) by Maurice Machado. But now its a whole different thing!
