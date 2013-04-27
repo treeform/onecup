@@ -16,7 +16,7 @@ Onecup makes several assumptions:
 
  + big chunks of the page going to be re-renders at once.
  + there is a need to explicit whitespace control
- + HTML is object code, nothing pretty to look at
+ + HTML is more of an object code then markup
 
 ## Features ##
 
@@ -31,7 +31,7 @@ div "#list-holder" ->
 ```
 
 ### explicit text and whitespace ###
-Text and whitespace is explicit. At first that might seem bad, but you get explicit control over your whitespace. No longer you have to sacrifice readability over function. You also don't have to fight over whitespace minifiers, because verything produced is already minified.
+Text is explicit, yet you get explicit control over your whitespace. You also don't have to fight over whitespace minifiers, because verything produced is already minified.
 
 ```
 div ->
@@ -40,7 +40,7 @@ div ->
   text "foo"
 ```
 
-Using text or leaving it on the same line is equivilent
+Using `text` or leaving it on the same line is equivilent
 
 ```
 p "look its the same thing"
@@ -49,7 +49,7 @@ p ->
 ```
 
 ### raw text ###
-text escapes things by default so you might have to use raw if you want to inject html or other markup
+`text` escapes things by default so you might have to use `raw` if you want to inject html or other markup
 
 ```
 div ->
@@ -57,7 +57,7 @@ div ->
 ```
 
 ### styles ###
-You can also pass styles directly. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or if you don't want to clutter your css with layout code that is not reusible.
+You can also pass styles directly using the `style` attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or if you don't want to clutter your css with layout code that is not reusible.
 
 ```
 div style{"z-index":5*4}, "z-index compution"
@@ -67,7 +67,7 @@ div style:{'background-color': "red"}, ->
 
 ### html attributes ###
 
-You can also pass special HTML attributes, like selected, disabled, checked, readonly, multiple. Which are surprisingly awkward in other tempting engines. 
+You can also pass special HTML attributes: `selected`, `disabled`, `checked`, `readonly`, and `multiple`. Which are surprisingly awkward in other templeting engines. 
 
 ```
 div ->
@@ -78,13 +78,12 @@ div ->
         input 
             type:check 
             checked:i==5
-            
 ```
    
 you can also define your own custom attributes
 
 ```
-div action_group:"main"
+div data:"1234"
 ```
 
 ### just coffee script ###
@@ -132,19 +131,21 @@ How to use OneCup in your app:
 ```
 # import tags into your namespace
 {render, div, span, table, thead, tbody, tr, td, th, text, textarea, button, hr, iframe,
- raw, a, br, b, img, label, form, input, ul, li, h1, h2, h4, select, option, p} = window.onecup
+ raw, a, br, b, img, label, form, input, ul, li, h1, h2, h4, select, option, p} = window.drykup
 
 # define a template namespace
 $t = {}
 
 # attach function to your template namespace
 $t.full_doc ->
-  html
   body ->
     p "content here"
 
 # anywere in your code
-onecup.render($t.full_doc, template, args)
+html = drykup.render($t.full_doc(template, args))
+# use JQuery (or some thing else) to insert it into html
+$("html").html(html)
+
 ```
 
 ## Origin ##

@@ -136,7 +136,7 @@ class OneCup
                 when 'object'
                     attrstr.push  @_attrstr arg
                 else
-                    throw 'DryKup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
+                    throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
 
         @htmlOut.push "<#{tagName} #{inter_symbol} #{attrstr.join("")}>"
         @_add innertext.join("")
@@ -154,7 +154,7 @@ class OneCup
             if typeof arg is 'object'
                 attrstr.push @_attrstr arg
             else
-                throw 'DryKup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
+                throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
         @_add "<#{tagName} #{inter_symbol} #{attrstr.join("")}/>"
 
 # attach one cup to window so that we can use it in other modules
