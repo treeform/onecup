@@ -4,31 +4,33 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Onecup by treeform</title>
-
+    <link rel="stylesheet" href="stylesheets/codemirror.css">
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <style type="text/css">
+      .CodeMirror {
+        border: 1px solid #eee;
+        height: auto;
+        margin-bottom: 15px;
+      }
+      .CodeMirror-scroll {
+        overflow-y: hidden;
+        overflow-x: auto;
+      }
+      #wrapper {
+        width: 800px;
+        margin: 0px auto;
+
+      }
+    </style>
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Onecup</h1>
-        <p>Plain coffee script HTML templeting library. </p>
-
-        <p class="view"><a href="https://github.com/treeform/onecup">View the Project on GitHub <small>treeform/onecup</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/treeform/onecup/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/treeform/onecup/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/treeform/onecup">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Onecup</h1>
+<div id="wrapper">
+<h1>Onecup</h1>
 
 <p>Onecup uses coffee script's nifty function nesting trick to bring your kickass yet simple templeting library.</p>
 
@@ -54,10 +56,10 @@
 
 <p>If first argument to a template tag begins with a <code>#</code> or <code>.</code> it is treated as a <em>id</em> or <em>class</em>. It uses the JQuery selectors syntax. Example:</p>
 
-<pre><code>div "#list-holder" -&gt;
-  ol "#main-list.number-list" -&gt;
+<pre><code>div "#list-holder", -&gt;
+  ol "#main-list.number-list", -&gt;
     for i in [0..10]
-    li ".number-iten", "nubmer {i}"
+      li ".number-iten", "nubmer {i}"
 </code></pre>
 
 <h3>explicit text and whitespace</h3>
@@ -82,16 +84,15 @@ p -&gt;
 <p><code>text</code> escapes things by default so you might have to use <code>raw</code> if you want to inject html or other markup</p>
 
 <pre><code>div -&gt;
-  raw markdown_html
+  raw "<di>"
 </code></pre>
 
 <h3>styles</h3>
 
 <p>Styles can be passed directly using the <code>style</code> attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or to not clutter the css with layout code that is not reusable.</p>
 
-<pre><code>div style{"z-index":5*4}, "z-index computation"
-div style:{'background-color': "red"}, -&gt;
-   text "this text will be red"
+<pre><code>div style:{"z-index":5*4}, "z-index computation"
+div style:{'background-color': "red"}, -&gt; text "this text will be red"
 </code></pre>
 
 <h3>html attributes</h3>
@@ -103,8 +104,8 @@ div style:{'background-color': "red"}, -&gt;
     for i in [0..10]
       li -&gt;
         text "nubmer {i}"
-        input 
-            type:check 
+        input
+            type:'check'
             checked:i==5
 </code></pre>
 
@@ -136,7 +137,7 @@ bbox -&gt;
 <h3>if blocks</h3>
 
 <pre><code>a = true
-if a 
+if a
     p "a is true"
 else
     p "a is false"
@@ -175,13 +176,15 @@ $("html").html(html)
 <h2>Origin</h2>
 
 <p>Onecup was originally fork of dryKup (<a href="https://github.com/mark-hahn/drykup">https://github.com/mark-hahn/drykup</a>) by Mark Hahn, which was a fork of CoffeeKup (<a href="https://github.com/mauricemach/coffeekup">https://github.com/mauricemach/coffeekup</a>) by Maurice Machado. But now its a whole different thing!</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/treeform">treeform</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+
+<p>This project is maintained by <a href="https://github.com/treeform">treeform</a></p>
+</div>
+<script src="javascripts/scale.fix.js"></script>
+<script src="javascripts/onecup.js"></script>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/site.js"></script>
+<script src="javascripts/codemirror.js"></script>
+<script src="javascripts/coffeescript.js"></script>
+<script src="javascripts/coffee-script.js"></script>
+</body>
 </html>
