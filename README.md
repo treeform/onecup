@@ -132,7 +132,7 @@ How to use OneCup in your app:
 ```
 # import tags into your namespace
 {render, div, span, table, thead, tbody, tr, td, th, text, textarea, button, hr, iframe,
- raw, a, br, b, img, label, form, input, ul, li, h1, h2, h4, select, option, p} = window.drykup
+ raw, a, br, b, img, label, form, input, ul, li, h1, h2, h4, select, option, p} = window.onecup
 
 # define a template namespace
 $t = {}
@@ -144,7 +144,7 @@ $t.full_doc ->
     p "content here"
 
 # anywere in your code
-drykup.render($t.full_doc, template, args)
+onecup.render($t.full_doc, template, args)
 ```
 
 ## Origin ##

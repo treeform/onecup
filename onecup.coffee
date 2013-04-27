@@ -42,7 +42,7 @@ escape = (text) ->
      .replace(/\</g, "&lt;")
      .replace(/\"/g, "&quot;")
 
-class Drykup
+class OneCup
     constructor: ->
         # use to add expaed text
         @text = (s) => @_add escape("" + s)
@@ -157,6 +157,6 @@ class Drykup
                 throw 'DryKup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
         @_add "<#{tagName} #{inter_symbol} #{attrstr.join("")}/>"
 
-# attach dry cup to window so that we can use it in other modules
-window.drykup = new Drykup()
+# attach one cup to window so that we can use it in other modules
+window.onecup = new OneCup()
 
