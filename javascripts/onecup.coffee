@@ -134,11 +134,16 @@ class OneCup
                 when 'function'
                     func = arg
                 when 'object'
-                    attrstr.push  @_attrstr arg
+                    attrstr.push @_attrstr arg
                 else
                     throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
 
-        @htmlOut.push "<#{tagName} #{inter_symbol} #{attrstr.join("")}>"
+        @htmlOut.push "<#{tagName}"
+        if inter_symbol
+            @htmlOut.push inter_symbol
+        if attrstr.length != 0
+            @htmlOut.push attrstr.join("")
+        @htmlOut.push ">"
         @_add innertext.join("")
 
         if func and tagName isnt 'textarea'
@@ -155,7 +160,13 @@ class OneCup
                 attrstr.push @_attrstr arg
             else
                 throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg
-        @_add "<#{tagName} #{inter_symbol} #{attrstr.join("")}/>"
+
+        @htmlOut.push "<#{tagName}"
+        if inter_symbol
+            @htmlOut.push inter_symbol
+        if attrstr.length != 0
+            @htmlOut.push attrstr.join("")
+        @htmlOut.push "/>"
 
 # attach one cup to window so that we can use it in other modules
 window.onecup = new OneCup()

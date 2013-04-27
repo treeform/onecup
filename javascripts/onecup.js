@@ -195,7 +195,14 @@
             throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg;
         }
       }
-      this.htmlOut.push("<" + tagName + " " + inter_symbol + " " + (attrstr.join("")) + ">");
+      this.htmlOut.push("<" + tagName);
+      if (inter_symbol) {
+        this.htmlOut.push(inter_symbol);
+      }
+      if (attrstr.length !== 0) {
+        this.htmlOut.push(attrstr.join(""));
+      }
+      this.htmlOut.push(">");
       this._add(innertext.join(""));
       if (func && tagName !== 'textarea') {
         if (typeof func === "function") {
@@ -217,7 +224,14 @@
           throw 'OneCup: invalid argument for tag ' + tagName + inter_symbol + ': ' + arg;
         }
       }
-      return this._add("<" + tagName + " " + inter_symbol + " " + (attrstr.join("")) + "/>");
+      this.htmlOut.push("<" + tagName);
+      if (inter_symbol) {
+        this.htmlOut.push(inter_symbol);
+      }
+      if (attrstr.length !== 0) {
+        this.htmlOut.push(attrstr.join(""));
+      }
+      return this.htmlOut.push("/>");
     };
 
     return OneCup;
