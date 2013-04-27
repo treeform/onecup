@@ -1,8 +1,7 @@
 # Onecup #
 
-Onecup is a pure coffee script client side or server side tempting engine. It excels at generating complex HTML in a few lines. Onecup is just coffee script which is just javascript. It requires no compolation (apart from coffeescript) and you can use all expressiveness and organization of coffee script anywhere in the templates.
+Onecup uses coffee script's nifty function nesting trick to bring your kickass yet simple templeting library.
 
-Hello world example:
 ```
 html ->
   body ->
@@ -14,9 +13,11 @@ html ->
 
 Onecup makes several assumptions:
 
- + big chunks of the page going to be re-renders at once.
- + there is a need to explicit whitespace control
+ + big chunks of the page going to be re-rendered at once.
+ + there is a need for explicit whitespace control
  + HTML is more of an object code then markup
+
+Onecup excels at generating complex HTML in a few lines. It is just coffee script which is just javascript. It requires no compolation (apart from coffeescript) and you can use all expressiveness and organization of coffee script anywhere in the templates.
 
 ## Features ##
 
@@ -57,7 +58,7 @@ div ->
 ```
 
 ### styles ###
-You can also pass styles directly using the `style` attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or if you don't want to clutter your css with layout code that is not reusible.
+Styles can be passed directly using the `style` attribute. This is needed when generating some complex looking HTML such as graphs and other visualizations. Or to not clutter the css with layout code that is not reusible.
 
 ```
 div style{"z-index":5*4}, "z-index compution"
@@ -67,7 +68,7 @@ div style:{'background-color': "red"}, ->
 
 ### html attributes ###
 
-You can also pass special HTML attributes: `selected`, `disabled`, `checked`, `readonly`, and `multiple`. Which are surprisingly awkward in other templeting engines. 
+Special HTML attributes can also be passed. `selected`, `disabled`, `checked`, `readonly`, and `multiple` are supported. They are surprisingly awkward in other templeting engines. 
 
 ```
 div ->
@@ -88,7 +89,7 @@ div data:"1234"
 
 ### just coffee script ###
 
-Compatibility with coffee script is 100%. OneCup is coffee script so you can use coffee script functions, loops, ifs, classes, and other constructs.
+Onecup is 100% coffee script, so you can use functions, loops, if blocks, classes, and other coffee script constructs.
 
 ### function ###
 
@@ -107,7 +108,7 @@ bbox ->
   text "so does this"
 ```
 
-### ifs ###
+### if blcoks ###
 ```
 a = true
 if a 
