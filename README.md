@@ -28,7 +28,7 @@ If first argument to a template tag begins with a `#` or `.` it is treated as a 
 div "#list-holder" ->
   ol "#main-list.number-list" ->
     for i in [0..10]
-    li ".number-iten", "nubmer {i}"
+    li ".number-iten", "number {i}"
 ```
 
 ### explicit text and whitespace ###
