@@ -28,7 +28,7 @@ If first argument to a template tag begins with a `#` or `.` it is treated as a 
 div "#list-holder" ->
   ol "#main-list.number-list" ->
     for i in [0..10]
-	li ".number-iten", "nubmer {i}"
+    li ".number-iten", "nubmer {i}"
 ```
 
 ### explicit text and whitespace ###
@@ -68,19 +68,19 @@ div style:{'background-color': "red"}, ->
 
 ### html attributes ###
 
-Special HTML attributes can also be passed. `selected`, `disabled`, `checked`, `readonly`, and `multiple` are supported. They are surprisingly awkward in other templeting engines. 
+Special HTML attributes can also be passed. `selected`, `disabled`, `checked`, `readonly`, and `multiple` are supported. They are surprisingly awkward in other templeting engines.
 
 ```
 div ->
   ol ->
     for i in [0..10]
       li ->
-        text "nubmer {i}"
-        input 
-            type:check 
+        text "number #{i}"
+        input
+            type:check
             checked:i==5
 ```
-   
+
 you can also define your own custom attributes
 
 ```
@@ -98,8 +98,8 @@ Onecup is 100% coffee script, so you can use functions, loops, if blocks, classe
 bbox = (content) ->
   div ".other-border", ->
     div ".inner-border", ->
-	div ".inner-layout", ->
-	   content()
+    div ".inner-layout", ->
+       content()
 
 bbox ->
   text "this box has fancy border"
@@ -111,7 +111,7 @@ bbox ->
 ### if blocks ###
 ```
 a = true
-if a 
+if a
     p "a is true"
 else
     p "a is false"
