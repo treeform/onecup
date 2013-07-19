@@ -1,24 +1,18 @@
 # Private HTML element reference.
 elements =
-  # Valid HTML 5 elements requiring a closing tag.
-  # Note: the `var` element is out for obvious reasons, please use `tag 'var'`.
-  regular: "a abbr address article aside audio b bdi bdo blockquote body button
- canvas caption cite code colgroup datalist dd del details dfn div dl dt em
- fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup
- html i iframe ins kbd label legend li map mark menu meter nav noscript object
- ol optgroup option output p pre progress q rp rt ruby s samp script section
- select small span strong sub summary sup table tbody td textarea tfoot
- th thead time title tr u ul video"
+    # Valid HTML 5 elements requiring a closing tag.
+    # Note: the `var` element is out for obvious reasons, please use `tag 'var'`.
+    regular: "a abbr address article aside audio b bdi bdo blockquote body button
+        canvas caption cite code colgroup datalist dd del details dfn div dl dt em
+        fieldset figcaption figure footer form h1 h2 h3 h4 h5 h6 head header hgroup
+        html i iframe ins kbd label legend li map mark menu meter nav noscript object
+        ol optgroup option output p pre progress q rp rt ruby s samp script section
+        select small span strong sub summary sup table tbody td textarea tfoot
+        th thead time title tr u ul video"
 
-  # Valid self-closing HTML 5 elements.
-  void: "area base br col command embed hr img input keygen link meta param
- source track wbr"
-
-  obsolete: "applet acronym bgsound dir frameset noframes isindex listing
- nextid noembed plaintext rb strike xmp big blink center font marquee multicol
- nobr spacer tt"
-
-  obsolete_void: "basefont frame"
+    # Valid self-closing HTML 5 elements.
+    void: "area base br col command embed hr img input keygen link meta param
+        source track wbr"
 
 # saying
 #    input checked: true makes <input checked=checked>
@@ -50,12 +44,12 @@ class OneCup
         @raw = (s) => @_add s
 
         # add all the normal tags
-        for tagName in merge_elements 'regular', 'obsolete'
+        for tagName in merge_elements 'regular'
             do (tagName) =>
                 @[tagName] = (args...) => @._tag tagName, args
 
         # add all the self closing tags
-        for tagName in merge_elements 'void', 'obsolete_void'
+        for tagName in merge_elements 'void'
             do (tagName) =>
                 @[tagName] = (args...) => @._closing_tag tagName, args
 
