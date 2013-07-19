@@ -32,7 +32,7 @@ div "#list-holder" ->
 ```
 
 ### explicit text and whitespace ###
-Text is explicit, yet you get explicit control over your whitespace. You also don't have to fight over whitespace minifiers, because everything produced is already minified.
+You get explicit control over your whitespace. But you pay the price, you have to use text functon to render simple text. On the other hand you also don't have to fight over whitespace minifiers, because everything produced is already minified.
 
 ```
 div ->
@@ -134,15 +134,12 @@ How to use OneCup in your app:
 {render, div, span, table, thead, tbody, tr, td, th, text, textarea, button, hr, iframe,
  raw, a, br, b, img, label, form, input, ul, li, h1, h2, h4, select, option, p} = window.drykup
 
-# define a template namespace
-$t = {}
-
-# attach function to your template namespace
+# create plain coffee script function with you template
 $t.full_doc ->
   body ->
     p "content here"
 
-# anywhere in your code
+# anywhere in your code just render!
 html = onecup.render($t.full_doc(template, args))
 # use JQuery (or some thing else) to insert it into html
 $("html").html(html)
@@ -152,3 +149,4 @@ $("html").html(html)
 ## Origin ##
 
 Onecup was originally fork of dryKup (https://github.com/mark-hahn/drykup) by Mark Hahn, which was a fork of CoffeeKup (https://github.com/mauricemach/coffeekup) by Maurice Machado. But now its a whole different thing!
+
