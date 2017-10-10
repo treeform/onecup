@@ -163,6 +163,7 @@ CSS_PROPS = """
     top
     transform
     transition
+    user_select
     vertical_align
     visibility
     white_space
@@ -468,7 +469,7 @@ redraw = (time) ->
     # make sure document is ready to start drawing
     #if document.readyState != "complete"
     #    console.log "doc not complete", document.getElementById('onecup')
-    #    onecup.after(onecup.refresh)
+    #    onecup.after(0, onecup.refresh)
     #    return
 
     if not onecup.body
@@ -478,11 +479,11 @@ redraw = (time) ->
                 onecup.body = document.body.innerHTML += "<div id='onecup'></div>"
             else
                 #console.log "no element yet"
-                onecup.after(onecup.refresh)
+                onecup.after(0, onecup.refresh)
                 return
         catch e
             #console.log "init", e
-            onecup.after(onecup.refresh)
+            onecup.after(0, onecup.refresh)
 
     if window.error_body?
         try
@@ -876,11 +877,11 @@ requestAnimationFrame = window.requestAnimationFrame or
     window.msRequestAnimationFrame or
     (callback) -> window.setTimeout(callback, 17)
 
-onecup.after = (fn) ->
+onecup.after = (ms, fn) ->
     wrap_fn = ->
         fn()
         onecup.refresh()
-    setTimeout(wrap_fn, 1)
+    setTimeout(wrap_fn, ms)
 
 onecup.later = (ms, fn) ->
     wrap_fn = ->
@@ -911,6 +912,7 @@ onecup.track_error = (fn, args...) ->
             fn(args...)
         catch e
             track 'error', stack:e.stack, message:""+e
+            throw e
     else
         fn(args...)
 
@@ -920,4 +922,37 @@ document.addEventListener("visibilitychange", visibilitychange, false)
 
 # refresh everything
 onecup.params = parse_url()
-onecup.after(onecup.refresh)
+onecup.after(0, onecup.refresh)
+
+
+onecup.preloaded = {}
+onecup.preload = (src) ->
+    if window.devicePixelRatio != 1 and src.indexOf(".png") != -1 and src[0...4] != "http"
+        src = src.replace(".png", "@2x.png")
+    if not onecup.preloaded[src]
+        image = new Image()
+        image.src = src
+        onecup.preloaded[src] = image
+
+onecup.getCache = {}
+onecup.get = (url) ->
+    if not onecup.getCache[url]
+        page =
+            loaded: false
+        xhr = new XMLHttpRequest()
+        xhr.addEventListener "load", (e) ->
+            page.status = xhr.status
+            page.loaded = e
+            page.json = JSON.parse(xhr.responseText)
+            onecup.refresh()
+        xhr.addEventListener "error", (e) ->
+            page.error = e
+            onecup.refresh()
+        xhr.addEventListener "abort", (e) ->
+            page.abort = e
+            onecup.refresh()
+        xhr.open("GET", url)
+        xhr.send()
+        page.xhr = xhr
+        onecup.getCache[url] = page
+    return onecup.getCache[url]
