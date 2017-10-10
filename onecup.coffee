@@ -445,6 +445,10 @@ onecup.css = (args...) ->
     current_rule = css_rule_chain.pop()
 
 
+if document.styleSheets.length == 0
+    document.head.appendChild(document.createElement("style"))
+
+
 onecup.import = ->
     all = []
     for k of onecup
@@ -461,7 +465,7 @@ onecup.importCoffee = (scope) ->
 
 # redraws the full html or just parts of it
 redraw = (time) ->
-    #console.log "redraw -----------------"
+    # console.log "redraw -----------------"
     # reset fn count to start over
     onecup.fn_count = 0
     onecup.params = parse_url()
@@ -476,7 +480,8 @@ redraw = (time) ->
         try
             onecup.body = document.getElementById('onecup')
             if not onecup.body and document.body
-                onecup.body = document.body.innerHTML += "<div id='onecup'></div>"
+                document.body.innerHTML += "<div id='onecup'></div>"
+                onecup.body = document.getElementById('onecup')
             else
                 #console.log "no element yet"
                 onecup.after(0, onecup.refresh)
